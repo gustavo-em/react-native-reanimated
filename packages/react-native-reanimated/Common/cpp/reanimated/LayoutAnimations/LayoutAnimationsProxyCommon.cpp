@@ -923,7 +923,7 @@ std::vector<Props::Shared *> LayoutAnimationsProxyCommon::queuedFrameProps(const
     std::visit(
         [&](auto &start) {
           if constexpr (!std::is_same_v<std::decay_t<decltype(start)>, LayoutAnimationCancellation>) {
-            if (start.tag == tag) {
+            if (start.tag == tag && start.frameProps) {
               frameProps.push_back(&start.frameProps);
             }
           }
